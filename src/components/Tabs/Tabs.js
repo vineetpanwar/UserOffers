@@ -4,6 +4,9 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
+import "./Tabs.scss";
+import Button from "@mui/material/Button";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -16,7 +19,49 @@ function TabPanel(props) {
       aria-labelledby={`simple-tab-${index}`}
       {...other}
     >
-      {value === index && (
+      {value === index && index === 0 && (
+        <Box sx={{ p: 3 }}>
+          <Typography className="subHeadingText" variant="body1">
+            Select Configure
+          </Typography>
+          <div className="leftSection">
+            <Box
+              sx={{
+                width: "50%",
+                height: 400
+              }}
+            >
+              <Typography variant="subtitle2">
+                Select an offering to Configure(Search an offering Name, ID, or
+                PLC)
+              </Typography>
+              <TextField
+                id="outlined-basic"
+                label="Search field"
+                variant="outlined"
+                margin="dense"
+              />
+              <Button variant="outlined">Search</Button>
+              <Button>VIEW PRODUCT CATALOG</Button>
+            </Box>
+            <Box
+              sx={{
+                width: "40%",
+                height: 400
+              }}
+            >
+              <Typography variant="subtitle2">
+                Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry. Lorem Ipsum has been the industry's standard dummy
+                text ever since the 1500s, when an unknown printer took a galley
+                of type and scrambled it to make a type specimen book
+              </Typography>
+              <Button>Learn more about this</Button>
+            </Box>
+          </div>
+        </Box>
+      )}
+      {value === index && index !== 0 && (
         <Box sx={{ p: 3 }}>
           <Typography>{children}</Typography>
         </Box>
