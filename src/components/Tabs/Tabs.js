@@ -7,6 +7,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import "./Tabs.scss";
 import Button from "@mui/material/Button";
+import SmartTable from "../SmartTable/SmartTable";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -59,6 +60,7 @@ function TabPanel(props) {
               <Button>Learn more about this</Button>
             </Box>
           </div>
+          <SmartTable />
         </Box>
       )}
       {value === index && index !== 0 && (
