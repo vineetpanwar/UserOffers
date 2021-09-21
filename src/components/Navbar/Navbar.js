@@ -1,33 +1,25 @@
-import React from "react";
-import messages from "./../../assets/Local/messages";
-import { useSelector, useDispatch } from "react-redux";
-import { setCurrentLang } from "../../store/Lang/LangAction";
-import { Link } from "react-router-dom";
-import { Btn } from "../Controls/Button/Button";
+import * as React from "react";
+import Toolbar from "@mui/material/Toolbar";
+import MenuIcon from "@mui/icons-material/Menu";
+import Typography from "@mui/material/Typography";
+import IconButton from "@mui/material/IconButton";
 
-export default function Navbar() {
-  const lang = useSelector((state) => state.lang);
-  const dispatch = useDispatch();
-  const message = messages[lang];
-  const switchLanguage = (lang) => {
-    dispatch(setCurrentLang(lang === "ar" ? "en" : "ar"));
-  };
-
+const Navbar = ({ open, handleDrawerOpen }) => {
   return (
-    <>
-      <nav className="navbar navbar-dark bg-dark">
-        <a className="navbar-brand">{message.hello}</a>
-        <div className="d-flex align-items-center">
-          {/* This private route won't be accessible if no token in lcoal storage */}
-          <Link to={`/${lang}`} className="text-white mx-3">
-            Private Route
-          </Link>
-          <Btn
-            handleClick={() => switchLanguage(lang)}
-            text={message.langBtn}
-          />
-        </div>
-      </nav>
-    </>
+    <Toolbar>
+      <IconButton
+        color="inherit"
+        aria-label="open drawer"
+        onClick={handleDrawerOpen}
+        edge="start"
+        sx={{ mr: 2, ...(open && { display: "none" }) }}
+      >
+        <MenuIcon />
+      </IconButton>
+      <Typography variant="h6" noWrap component="div">
+        Login
+      </Typography>
+    </Toolbar>
   );
-}
+};
+export default Navbar;

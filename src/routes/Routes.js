@@ -35,7 +35,11 @@ const Routes = ({ lang }) => {
       <Router history={history}>
         <Switch>
           <LazyComponent.Login path="/:lang/login" exact />
-          <PrivateRoute component={LazyComponent.Home} path="/:lang/" exact />
+          <PrivateRoute
+            component={LazyComponent.Dashboard}
+            path="/:lang/"
+            exact
+          />
           <Redirect from="**" to={`/${lang}/`} exact />
         </Switch>
       </Router>
