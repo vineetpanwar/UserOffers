@@ -13,6 +13,8 @@ import Paper from "@mui/material/Paper";
 import { visuallyHidden } from "@mui/utils";
 import Button from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
+import TextField from "@mui/material/TextField";
+import Typography from "@mui/material/Typography";
 
 function createData(
   name,
@@ -184,19 +186,19 @@ function stableSort(array, comparator) {
 
 const headCells = [
   {
-    id: "Name",
+    id: "name",
     numeric: false,
     disablePadding: true,
     label: "Name"
   },
   {
-    id: "OfferingCategory",
+    id: "offeringCategory",
     numeric: false,
     disablePadding: true,
     label: "Offering Category"
   },
   {
-    id: "BusinessModel",
+    id: "businessModel",
     numeric: false,
     disablePadding: true,
     label: "Business Model"
@@ -208,31 +210,31 @@ const headCells = [
     label: "PLC"
   },
   {
-    id: "RevenueTreatment",
+    id: "revenueTreatment",
     numeric: false,
     disablePadding: true,
     label: "Revenue Treatment"
   },
   {
-    id: "CloudEnabled",
+    id: "cloudEnabled",
     numeric: false,
     disablePadding: true,
     label: "Cloud Enabled"
   },
   {
-    id: "StartDate",
+    id: "startDate",
     numeric: false,
     disablePadding: true,
     label: "Start Date"
   },
   {
-    id: "EndDate",
+    id: "endDate",
     numeric: false,
     disablePadding: true,
     label: "End Date"
   },
   {
-    id: "LifeCycleStatus",
+    id: "lifeCycleStatus",
     numeric: false,
     disablePadding: true,
     label: "LifeCycle Status"
@@ -310,6 +312,8 @@ export default function EnhancedTable() {
   const [orderBy, setOrderBy] = React.useState("name");
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [searchText, setSearchText] = React.useState("");
+  const [actualRows, setRows] = React.useState(rows);
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === "asc";
@@ -326,6 +330,18 @@ export default function EnhancedTable() {
     setPage(0);
   };
 
+  const handleSearch = () => {
+    const tempRows = actualRows.filter((curr) => {
+      return (
+        curr.name.includes(searchText) ||
+        curr.offeringCategory.includes(searchText) ||
+        curr.businessModel.includes(searchText)
+      );
+    });
+
+    setRows(tempRows);
+  };
+
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
@@ -333,6 +349,49 @@ export default function EnhancedTable() {
   return (
     <Box sx={{ width: "100%" }}>
       <Paper sx={{ width: "100%", mb: 2 }}>
+        <Box sx={{ p: 3 }}>
+          <Typography className="subHeadingText" variant="body1">
+            Select Configure
+          </Typography>
+          <div className="leftSection">
+            <Box
+              sx={{
+                width: "50%",
+                height: 400
+              }}
+            >
+              <Typography variant="subtitle2">
+                Select an offering to Configure(Search an offering Name, ID, or
+                PLC)
+              </Typography>
+              <TextField
+                id="outlined-basic"
+                label="Search field"
+                variant="outlined"
+                margin="dense"
+                onChange={(event) => setSearchText(event.target.value)}
+              />
+              <Button variant="outlined" onClick={handleSearch}>
+                Search
+              </Button>
+              <Button>VIEW PRODUCT CATALOG</Button>
+            </Box>
+            <Box
+              sx={{
+                width: "40%",
+                height: 400
+              }}
+            >
+              <Typography variant="subtitle2">
+                Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry. Lorem Ipsum has been the industry's standard dummy
+                text ever since the 1500s, when an unknown printer took a galley
+                of type and scrambled it to make a type specimen book
+              </Typography>
+              <Button>Learn more about this</Button>
+            </Box>
+          </div>
+        </Box>
         <TableContainer>
           <Table
             sx={{ minWidth: 750 }}
@@ -347,11 +406,9 @@ export default function EnhancedTable() {
             <TableBody>
               {/* if you don't need to support IE11, you can replace the `stableSort` call with:
                  rows.slice().sort(getComparator(order, orderBy)) */}
-              {stableSort(rows, getComparator(order, orderBy))
+              {stableSort(actualRows, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
-                  console.log(row, index);
-
                   return (
                     <StyledTableRow key={row.name}>
                       <StyledTableCell align="center">
