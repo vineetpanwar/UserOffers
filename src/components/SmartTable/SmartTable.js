@@ -1,19 +1,18 @@
 import * as React from "react";
 import PropTypes from "prop-types";
-import { alpha } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
+import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import TableSortLabel from "@mui/material/TableSortLabel";
-import Toolbar from "@mui/material/Toolbar";
 import Paper from "@mui/material/Paper";
 import { visuallyHidden } from "@mui/utils";
 import Button from "@mui/material/Button";
+import { styled } from "@mui/material/styles";
 
 function createData(
   name,
@@ -246,6 +245,15 @@ const headCells = [
   }
 ];
 
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    fontSize: 16
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 14
+  }
+}));
+
 function EnhancedTableHead(props) {
   const { order, orderBy, onRequestSort } = props;
   const createSortHandler = (property) => (event) => {
@@ -256,7 +264,7 @@ function EnhancedTableHead(props) {
     <TableHead>
       <TableRow>
         {headCells.map((headCell) => (
-          <TableCell
+          <StyledTableCell
             key={headCell.id}
             align={headCell.numeric ? "right" : "left"}
             padding={headCell.disablePadding ? "none" : "normal"}
@@ -274,7 +282,7 @@ function EnhancedTableHead(props) {
                 </Box>
               ) : null}
             </TableSortLabel>
-          </TableCell>
+          </StyledTableCell>
         ))}
       </TableRow>
     </TableHead>
@@ -287,9 +295,19 @@ EnhancedTableHead.propTypes = {
   orderBy: PropTypes.string.isRequired
 };
 
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+  "&:nth-of-type(odd)": {
+    backgroundColor: theme.palette.action.hover
+  },
+  // hide last border
+  "&:last-child td, &:last-child th": {
+    border: 0
+  }
+}));
+
 export default function EnhancedTable() {
   const [order, setOrder] = React.useState("asc");
-  const [orderBy, setOrderBy] = React.useState("calories");
+  const [orderBy, setOrderBy] = React.useState("name");
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
@@ -335,29 +353,36 @@ export default function EnhancedTable() {
                   console.log(row, index);
 
                   return (
-                    <TableRow
-                      hover
-                      role="checkbox"
-                      tabIndex={-1}
-                      key={row.name}
-                    >
-                      <TableCell align="right">{row.name}</TableCell>
-                      <TableCell align="right">
+                    <StyledTableRow key={row.name}>
+                      <StyledTableCell align="right">
+                        {row.name}
+                      </StyledTableCell>
+                      <StyledTableCell align="right">
                         {row.offeringCategory}
-                      </TableCell>
-                      <TableCell align="right">{row.businessModel}</TableCell>
-                      <TableCell align="right">{row.PLC}</TableCell>
-                      <TableCell align="right">
+                      </StyledTableCell>
+                      <StyledTableCell align="right">
+                        {row.businessModel}
+                      </StyledTableCell>
+                      <StyledTableCell align="right">{row.PLC}</StyledTableCell>
+                      <StyledTableCell align="right">
                         {row.revenueTreatment}
-                      </TableCell>
-                      <TableCell align="right">{row.cloudEnabled}</TableCell>
-                      <TableCell align="right">{row.startDate}</TableCell>
-                      <TableCell align="right">{row.endDate}</TableCell>
-                      <TableCell align="right">{row.lifeCycleStatus}</TableCell>
-                      <TableCell align="right">
+                      </StyledTableCell>
+                      <StyledTableCell align="right">
+                        {row.cloudEnabled}
+                      </StyledTableCell>
+                      <StyledTableCell align="right">
+                        {row.startDate}
+                      </StyledTableCell>
+                      <StyledTableCell align="right">
+                        {row.endDate}
+                      </StyledTableCell>
+                      <StyledTableCell align="right">
+                        {row.lifeCycleStatus}
+                      </StyledTableCell>
+                      <StyledTableCell align="right">
                         <Button variant="contained">CONFIGURE</Button>
-                      </TableCell>
-                    </TableRow>
+                      </StyledTableCell>
+                    </StyledTableRow>
                   );
                 })}
               {emptyRows > 0 && (
