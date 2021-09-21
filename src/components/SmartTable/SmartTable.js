@@ -192,55 +192,55 @@ const headCells = [
   {
     id: "OfferingCategory",
     numeric: false,
-    disablePadding: false,
+    disablePadding: true,
     label: "Offering Category"
   },
   {
     id: "BusinessModel",
     numeric: false,
-    disablePadding: false,
+    disablePadding: true,
     label: "Business Model"
   },
   {
     id: "PLC",
-    numeric: true,
-    disablePadding: false,
+    numeric: false,
+    disablePadding: true,
     label: "PLC"
   },
   {
     id: "RevenueTreatment",
     numeric: false,
-    disablePadding: false,
+    disablePadding: true,
     label: "Revenue Treatment"
   },
   {
     id: "CloudEnabled",
     numeric: false,
-    disablePadding: false,
+    disablePadding: true,
     label: "Cloud Enabled"
   },
   {
     id: "StartDate",
     numeric: false,
-    disablePadding: false,
+    disablePadding: true,
     label: "Start Date"
   },
   {
     id: "EndDate",
     numeric: false,
-    disablePadding: false,
+    disablePadding: true,
     label: "End Date"
   },
   {
     id: "LifeCycleStatus",
     numeric: false,
-    disablePadding: false,
+    disablePadding: true,
     label: "LifeCycle Status"
   },
   {
     id: "configure",
     numeric: false,
-    disablePadding: false,
+    disablePadding: true,
     label: ""
   }
 ];
@@ -266,7 +266,7 @@ function EnhancedTableHead(props) {
         {headCells.map((headCell) => (
           <StyledTableCell
             key={headCell.id}
-            align={headCell.numeric ? "right" : "left"}
+            align="center"
             padding={headCell.disablePadding ? "none" : "normal"}
             sortDirection={orderBy === headCell.id ? order : false}
           >
@@ -354,32 +354,34 @@ export default function EnhancedTable() {
 
                   return (
                     <StyledTableRow key={row.name}>
-                      <StyledTableCell align="right">
+                      <StyledTableCell align="center">
                         {row.name}
                       </StyledTableCell>
-                      <StyledTableCell align="right">
+                      <StyledTableCell align="center">
                         {row.offeringCategory}
                       </StyledTableCell>
-                      <StyledTableCell align="right">
+                      <StyledTableCell align="center">
                         {row.businessModel}
                       </StyledTableCell>
-                      <StyledTableCell align="right">{row.PLC}</StyledTableCell>
-                      <StyledTableCell align="right">
+                      <StyledTableCell align="center">
+                        {row.PLC}
+                      </StyledTableCell>
+                      <StyledTableCell align="center">
                         {row.revenueTreatment}
                       </StyledTableCell>
-                      <StyledTableCell align="right">
+                      <StyledTableCell align="center">
                         {row.cloudEnabled}
                       </StyledTableCell>
-                      <StyledTableCell align="right">
+                      <StyledTableCell align="center">
                         {row.startDate}
                       </StyledTableCell>
-                      <StyledTableCell align="right">
+                      <StyledTableCell align="center">
                         {row.endDate}
                       </StyledTableCell>
-                      <StyledTableCell align="right">
+                      <StyledTableCell align="center">
                         {row.lifeCycleStatus}
                       </StyledTableCell>
-                      <StyledTableCell align="right">
+                      <StyledTableCell align="center">
                         <Button variant="contained">CONFIGURE</Button>
                       </StyledTableCell>
                     </StyledTableRow>
