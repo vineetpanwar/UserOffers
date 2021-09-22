@@ -15,6 +15,7 @@ import Button from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
+import "./SmartTable.scss";
 
 function createData(
   name,
@@ -357,7 +358,7 @@ export default function EnhancedTable() {
             <Box
               sx={{
                 width: "50%",
-                height: 400
+                height: 200
               }}
             >
               <Typography variant="subtitle2">
@@ -379,7 +380,7 @@ export default function EnhancedTable() {
             <Box
               sx={{
                 width: "40%",
-                height: 400
+                height: 200
               }}
             >
               <Typography variant="subtitle2">
