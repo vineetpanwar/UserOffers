@@ -351,7 +351,7 @@ export default function EnhancedTable() {
     <Box sx={{ width: "100%" }}>
       <Paper sx={{ width: "100%", mb: 2 }}>
         <Box sx={{ p: 3 }}>
-          <Typography className="subHeadingText" variant="body1">
+          <Typography className="subHeadingText" variant="h6">
             Select Configure
           </Typography>
           <div className="leftSection">
@@ -361,7 +361,7 @@ export default function EnhancedTable() {
                 height: 200
               }}
             >
-              <Typography variant="subtitle2">
+              <Typography variant="body2">
                 Select an offering to Configure(Search an offering Name, ID, or
                 PLC)
               </Typography>
@@ -383,7 +383,10 @@ export default function EnhancedTable() {
                 height: 200
               }}
             >
-              <Typography variant="subtitle2">
+              <Typography className="subHeadingText" variant="h6">
+                Why do I need to chose an Offering?
+              </Typography>
+              <Typography variant="body2">
                 Lorem Ipsum is simply dummy text of the printing and typesetting
                 industry. Lorem Ipsum has been the industry's standard dummy
                 text ever since the 1500s, when an unknown printer took a galley

@@ -3,6 +3,7 @@ import Toolbar from "@mui/material/Toolbar";
 import MenuIcon from "@mui/icons-material/Menu";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
+import "./Navbar.scss";
 
 const Navbar = ({ open, handleDrawerOpen }) => {
   return (
@@ -16,7 +17,7 @@ const Navbar = ({ open, handleDrawerOpen }) => {
       >
         <MenuIcon />
       </IconButton>
-      <Typography variant="h6" noWrap component="div">
+      <Typography variant="h6" noWrap component="div" className="navbar">
         Login
       </Typography>
     </Toolbar>
