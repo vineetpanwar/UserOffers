@@ -250,9 +250,11 @@ const headCells = [
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
+    height: 70,
     fontSize: 16
   },
   [`&.${tableCellClasses.body}`]: {
+    height: 60,
     fontSize: 14
   }
 }));
@@ -358,21 +360,26 @@ export default function EnhancedTable() {
             <Box
               sx={{
                 width: "50%",
-                height: 200
+                height: 150
               }}
             >
-              <Typography variant="body2">
+              <Typography variant="body2" className="selectOfferingContent">
                 Select an offering to Configure(Search an offering Name, ID, or
                 PLC)
               </Typography>
               <TextField
                 id="outlined-basic"
+                className="searchText"
                 label="Search field"
                 variant="outlined"
                 margin="dense"
                 onChange={(event) => setSearchText(event.target.value)}
               />
-              <Button variant="outlined" onClick={handleSearch}>
+              <Button
+                className="searchButton"
+                variant="outlined"
+                onClick={handleSearch}
+              >
                 Search
               </Button>
               <Button>VIEW PRODUCT CATALOG</Button>
@@ -380,7 +387,7 @@ export default function EnhancedTable() {
             <Box
               sx={{
                 width: "40%",
-                height: 200
+                height: 150
               }}
             >
               <Typography className="subHeadingText" variant="h6">
